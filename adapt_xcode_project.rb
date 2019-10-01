@@ -1,9 +1,9 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 require 'xcodeproj'
 require 'yaml'
 
-project_path = './ios/Runner.xcodeproj'
+project_path = './ios/Runner.xcodeproj.orig'
 # project_path =  '/home/cs/tmp/project.pbxproj/2'
 project = Xcodeproj::Project.open(project_path)
 
@@ -19,8 +19,14 @@ target.build_configurations.pop
 
 target.build_configurations.each do |config|
   puts config.name
-  #config.DEVELOPMENT_TEAM = '8467KY9FLZ'
+  config.build_settings['DEVELOPMENT_TEAM']               = '8467KY9FLZ'
+  config.build_settings['PRODUCT_BUNDLE_IDENTIFIER']      = 'dev.weisser-zwerg.flutterHelloWorldValidate'
+  config.build_settings['PROVISIONING_PROFILE_SPECIFIER'] = 'flutterHelloWorldValidate'
 end
+
+puts project.pretty_print
+
+project.save('./ios/Runner.xcodeproj')
 
 # https://stackoverflow.com/questions/49234751/how-to-read-ruby-object-in-yaml
 #File.open("test.yml", File::RDWR|File::CREAT, 0644) {|f|
@@ -28,7 +34,7 @@ end
 #  f.write YAML.dump(target)
 #}
 
-File.open "test.yml", "w" do |f|
-  f.seek(0)
-  f.write YAML.dump(target)
-end
+# File.open "test.yml", "w" do |f|
+#   f.seek(0)
+#   f.write YAML.dump(target)
+# end
