@@ -19,9 +19,11 @@ puts target.build_configurations.class
 
 target.build_configurations.each do |config|
   puts config.name
+  config.build_settings['CODE_SIGN_IDENTITY']             = 'iPhone Developer'
+  config.build_settings['CODE_SIGN_STYLE']                = 'Manual'
   config.build_settings['DEVELOPMENT_TEAM']               = '8467KY9FLZ'
   config.build_settings['PRODUCT_BUNDLE_IDENTIFIER']      = 'dev.weisser-zwerg.flutterHelloWorldValidate'
-  config.build_settings['PROVISIONING_PROFILE_SPECIFIER'] = 'flutterHelloWorldValidate'
+  config.build_settings['PROVISIONING_PROFILE_SPECIFIER'] = 'dev weisser zwerg flutterHelloWorldValidate'
 end
 
 puts project.pretty_print
