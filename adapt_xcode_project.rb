@@ -15,7 +15,7 @@ puts target.build_configurations.class
 
 # puts target.build_configurations('Debug').class
 
-target.build_configurations.pop
+# target.build_configurations.pop
 
 target.build_configurations.each do |config|
   puts config.name
